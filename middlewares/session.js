@@ -9,15 +9,17 @@ module.exports = (req, res, next) => {
   const api_token = req.headers["x-spacedeck-api-token"];
 
   if (api_token && api_token.length>7) {
-    db.User.findOne({where: {api_token: api_token}}).then(user => {
-      req.user = user;
-      next();
-    }).error(err => {
-      res.status(403).json({
-        "error": "invalid_api-token"
+   db.Session.findOne({ where: { token: api_token } })
+      .then(rs => db.User.findOne({where: {_id: rs.get('user_id')}}))
+      .then(user => {
+        req.user = user;
+        next();
+      }).error(err => {
+        res.status(403).json({
+          "error": "invalid_api-token"
+        });
+        next();
       });
-      next();
-    });
 
     return;
   }

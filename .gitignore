@@ -5,4 +5,4 @@ public/stylesheets/*.css
 database.sqlite
 *.swp
 *~
-
+*.DS_Store

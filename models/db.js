@@ -6,8 +6,8 @@ function sequel_log(a,b,c) {
 }
 
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('meetingmaker', 'meetingmaker', 'Grym123!', {
-  host: 'nclong.database.windows.net',
+const sequelize = new Sequelize(config.get('mssql_dbname'), config.get('mssql_user'), config.get('mssql_password'), {
+  host: config.get('mssql_host'),
   port: 1433,
   dialect: 'mssql',
   dialectOptions: {

@@ -1,0 +1,7 @@
+{
+    "invite_code": "INVITE_CODE",
+    "mssql_host": "MSSQL_HOST",
+    "mssql_dbname": "MSSQL_DBNAME",
+    "mssql_user": "MSSQL_USER",
+    "mssql_password": "MSSQL_PASSWORD"
+}

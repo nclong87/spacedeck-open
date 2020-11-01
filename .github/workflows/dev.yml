@@ -19,6 +19,6 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build . -t spacedeck-open
+            docker build . -t nclong87/private:spacedeck-open
             docker tag spacedeck-open nclong87/private:spacedeck-open
             docker push nclong87/private:spacedeck-open

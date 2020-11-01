@@ -11,14 +11,11 @@ jobs:
         # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@master
-        
-        - name: 'Build and push image'
-          uses: azure/docker-login@v1
+      
+        - name: Push to Docker Hub
+          uses: docker/build-push-action@v1
           with:
-            login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-            username: ${{ secrets.REGISTRY_USERNAME }}
-            password: ${{ secrets.REGISTRY_PASSWORD }}
-        - run: |
-            docker build . -t spacedeck-open
-            docker tag spacedeck-open nclong87/spacedeck-open
-            docker push nclong87/spacedeck-open
+              username: ${{ secrets.REGISTRY_USERNAME }}
+              password: ${{ secrets.REGISTRY_PASSWORD }}
+              repository: nclong87/private
+              tag_with_ref: true

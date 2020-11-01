@@ -1,7 +1,7 @@
 {
-    "invite_code": "INVITE_CODE",
-    "mssql_host": "MSSQL_HOST",
-    "mssql_dbname": "MSSQL_DBNAME",
-    "mssql_user": "MSSQL_USER",
-    "mssql_password": "MSSQL_PASSWORD"
+    "invite_code": "APPSETTING_INVITE_CODE",
+    "mssql_host": "APPSETTING_MSSQL_HOST",
+    "mssql_dbname": "APPSETTING_MSSQL_DBNAME",
+    "mssql_user": "APPSETTING_MSSQL_USER",
+    "mssql_password": "APPSETTING_MSSQL_PASSWORD"
 }

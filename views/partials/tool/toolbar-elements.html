@@ -8,16 +8,6 @@
       <span class="icon icon-folder"></span>
     </a>
       
-    <a class="btn btn-icon btn-dark"
-       title="Parent Folder"
-       href="/folders/{{active_space.parent_space_id}}"
-       v-if="(active_space.parent_space_id && !guest_nickname && !embedded)">
-      
-      <span class="icon icon-sd6 icon-svg"></span>
-    </a>
-
-    <button class="btn btn-divider"></button>
-
     <div class="dropdown top left light" v-bind:class="{open:opened_dialog=='shapes'}">
       <div class="btn-collapse in">
         <button class="btn btn-transparent btn-icon-labeled" v-bind:class="{open:opened_dialog=='shapes'}" v-on:click="open_dialog('shapes')">

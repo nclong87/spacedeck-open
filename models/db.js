@@ -6,9 +6,14 @@ function sequel_log(a,b,c) {
 }
 
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'sqlite',
+const sequelize = new Sequelize('meetingmaker', 'meetingmaker', 'Grym123!', {
+  host: 'nclong.database.windows.net',
+  port: 1433,
+  dialect: 'mssql',
+  dialectOptions: {
+    requestTimeout: 30000,
+    encrypt: true,
+  },
 
   pool: {
     max: 5,
@@ -17,13 +22,30 @@ const sequelize = new Sequelize('database', 'username', 'password', {
     idle: 10000
   },
 
-  // SQLite only
-  storage: config.get('storage_local_db'),
   logging: sequel_log,
 
   // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
   operatorsAliases: false
 });
+
+// const sequelize = new Sequelize('database', 'username', 'password', {
+//   host: 'localhost',
+//   dialect: 'sqlite',
+
+//   pool: {
+//     max: 5,
+//     min: 0,
+//     acquire: 30000,
+//     idle: 10000
+//   },
+
+//   // SQLite only
+//   storage: config.get('storage_local_db'),
+//   logging: sequel_log,
+
+//   // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
+//   operatorsAliases: false
+// });
 
 var User;
 var Session;

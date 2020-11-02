@@ -41,26 +41,34 @@ router.get('/current', function(req, res, next) {
 
 // create user
 router.post('/', function(req, res) {
-  if (!req.body["email"] || !req.body["password"]) {
+  const api_token = req.headers["x-spacedeck-api-token"];
+  if (api_token != config.get('api_token')) {
+    res.status(403).json({
+      "error": "invalid_api-token"
+    });
+    return;
+  }
+  if (!req.body["email"]) {
     res.status(400).json({"error":"email or password missing"});
     return;
   }
   
   var email = req.body["email"].toLowerCase();
-  var nickname = req.body["nickname"];
-  var password = req.body["password"];
-  var password_confirmation = req.body["password_confirmation"];
-  var invite_code = req.body["invite_code"];
+  var nickname = '';
+  var password = '';
+  // var password_confirmation = req.body["password_confirmation"];
+  // var invite_code = req.body["invite_code"];
+  // var api_token = req.body["api_token"];
 
-  if (password_confirmation != password) {
-    res.status(400).json({"error":"password_confirmation"});
-    return;
-  }
+  // if (password_confirmation != password) {
+  //   res.status(400).json({"error":"password_confirmation"});
+  //   return;
+  // }
   
-  if (config.invite_code && invite_code != config.invite_code) {
-    res.status(400).json({"error":"Invalid Invite Code."});
-    return;
-  }
+  // if (config.invite_code && invite_code != config.invite_code) {
+  //   res.status(400).json({"error":"Invalid Invite Code."});
+  //   return;
+  // }
   
   if (!validator.isEmail(email)) {
     res.status(400).json({"error":"email_invalid"});
@@ -80,7 +88,8 @@ router.post('/', function(req, res) {
             nickname: nickname,
             password_hash: hash,
             prefs_language: req.i18n.locale,
-            confirmation_token: token
+            confirmation_token: token,
+            api_token: api_token,
           };
 
           db.User.create(u)

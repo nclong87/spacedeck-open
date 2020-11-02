@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   // authentication via API token
   const api_token = req.headers["x-spacedeck-api-token"];
 
-  if (api_token && api_token.length>7) {
+  if (api_token && api_token.length>1) {
   //  db.Session.findOne({ where: { token: api_token } })
   //     .then(rs => db.User.findOne({where: {_id: rs.get('user_id')}}))
       db.User.findOne({ where: { api_token: api_token } })

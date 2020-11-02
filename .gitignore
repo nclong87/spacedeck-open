@@ -6,3 +6,4 @@ database.sqlite
 *.swp
 *~
 *.DS_Store
+.vscode

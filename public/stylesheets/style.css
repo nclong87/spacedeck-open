@@ -8068,13 +8068,11 @@ select {
     pointer-events: none; }
   .btn.btn-transparent {
     background-color: transparent;
-    color: #222; }
+    color: #776cc0; }
     .btn.btn-transparent.active {
-      color: #ffffff;
-      background-color: #111; }
+      color: #ec1e78; }
     .btn.btn-transparent.open {
-      color: #ffffff;
-      background-color: #111;
+      color: #ec1e78;
       border-radius: 0; }
   .btn.btn-transparent-medium {
     background-color: transparent;
@@ -10079,76 +10077,35 @@ button.close {
   .author .author-date {
     opacity: 0.5; }
 
-#account-forms {
-  z-index: 2000;
-  width: 100%;
-  height: 100%; }
-  #account-forms.got-user {
-    display: none; }
-  #account-forms > div {
-    display: table;
-    width: 100%;
-    height: 100%;
-    position: absolute !important;
-    pointer-events: none; }
-    #account-forms > div.active#login form {
-      -webkit-transform: rotateY(0deg);
-      -ms-transform: rotateY(0deg);
-      transform: rotateY(0deg); }
-    #account-forms > div.active#signup form {
-      -webkit-transform: rotateY(0deg);
-      -ms-transform: rotateY(0deg);
-      transform: rotateY(0deg); }
-    #account-forms > div.active#password-reset form {
-      -webkit-transform: rotateY(0deg);
-      -ms-transform: rotateY(0deg);
-      transform: rotateY(0deg); }
-    #account-forms > div.active#password-confirm form {
-      -webkit-transform: rotateY(0deg);
-      -ms-transform: rotateY(0deg);
-      transform: rotateY(0deg); }
-    #account-forms > div.active form {
-      opacity: 1;
-      pointer-events: auto; }
-    #account-forms > div .content {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
-      -webkit-perspective: 1000;
-      -moz-perspective: 1000;
-      -ms-perspective: 1000;
-      perspective: 1000;
-      -webkit-perspective-origin: center center;
-      -moz-perspective-origin: center center;
-      perspective-origin: center center; }
-    #account-forms > div#login form {
-      -webkit-transform: rotateY(-180deg);
-      -ms-transform: rotateY(-180deg);
-      transform: rotateY(-180deg); }
-    #account-forms > div#signup form {
-      -webkit-transform: rotateY(180deg);
-      -ms-transform: rotateY(180deg);
-      transform: rotateY(180deg); }
-    #account-forms > div#password form {
-      -webkit-transform: rotateY(180deg);
-      -ms-transform: rotateY(180deg);
-      transform: rotateY(180deg); }
-    #account-forms > div form {
-      text-align: left;
-      display: inline-block;
-      width: 330px;
-      opacity: 0;
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transition: all 0.25s ease-in-out;
-      transition: all 0.25s ease-in-out;
-      -webkit-transform-origin: center center;
-      -moz-transform-origin: center center;
-      -ms-transform-origin: center center;
-      transform-origin: center center; }
-      #account-forms > div form h4 {
-        display: inline-block; }
+#account-forms .lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px; }
+
+#account-forms .lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
+
+#account-forms .lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s; }
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1; }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0; } }
 
 #updates {
   list-style: none;
@@ -13381,6 +13338,9 @@ button.close {
   box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.15);
   border: 1px solid black; }
 
+.zoom-bar .icon-plus, .zoom-bar .btn-more:before, .zoom-bar .icon-minus, .zoom-bar .btn-less:before {
+  color: #776cc0; }
+
 #color-toggles {
   background-size: 40px;
   border-radius: 3px;
@@ -16071,3 +16031,44 @@ body {
 
 [v-cloak] {
   display: none !important; }
+
+.loading-page {
+  display: flex;
+  flex: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center; }
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px; }
+
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #776cc0;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite; }
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s; }
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1; }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0; } }

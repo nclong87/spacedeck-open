@@ -1,7 +1,7 @@
 on:
     push:
         branches:
-        - main
+        - mnt
 name: Deploy spacedeck prod
 
 jobs:

@@ -5,7 +5,8 @@
   "host": "::",
   "port": 9666,
   "endpoint": "http://localhost:9666",
-  "invite_code": "top-sekrit",
+  "api_token": "123456",
+  "invite_code": "123456",
 
   "storage_local_path": "./storage",
   "storage_local_db": "./database.sqlite",
@@ -13,6 +14,11 @@
   "storage_endpoint": "http://localhost:4572",
   "storage_bucket": "my_spacedeck_bucket",
   "storage_cdn": "/storage",
+
+  "mssql_host": "nclong.database.windows.net",
+  "mssql_dbname": "meetingmaker",
+  "mssql_user": "meetingmaker",
+  "mssql_password": "",
 
   "mongodb_host": "localhost",
   "redis_mock": true,

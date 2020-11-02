@@ -1,5 +1,8 @@
-on: [push]
-name: Linux_Container_Workflow
+on:
+    push:
+        branches:
+        - mnt
+name: Deploy spacedeck prod
 
 jobs:
     build-and-deploy:

@@ -26,5 +26,11 @@ jobs:
         - run: |
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER_PROD }}/spacedeck-open:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER_PROD }}/spacedeck-open:${{ github.sha }}
+            
+        - name: 'Deploy to Azure App Service'
+          uses: 'azure/webapps-deploy@v2'
+          with:
+            app-name: 'meetingmaker-spacedeck'
+            images: ${{ secrets.REGISTRY_LOGIN_SERVER_PROD }}/spacedeck-open:${{ github.sha }}
 
     

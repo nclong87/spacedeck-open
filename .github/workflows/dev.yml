@@ -11,7 +11,22 @@ jobs:
         # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@master
-        
+
+        - name: Cache node modules
+          uses: actions/cache@v2
+          id: npm-cache
+          with:
+            path: node_modules
+            key: spacedeck-node_modules-${{ hashFiles('**/package-lock.json') }}
+
+        - name: Install Dependencies
+          if: steps.npm-cache.outputs.cache-hit != 'true'
+          run: |
+            npm install
+        - name: Build Style
+          run: |
+            gulp styles
+
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
@@ -20,7 +35,7 @@ jobs:
         - run: |
             docker build . -t nclong87/private:spacedeck-open-${{ github.sha }}
             docker push nclong87/private:spacedeck-open-${{ github.sha }}
-            
+
         - name: 'Deploy to Azure App Service'
           uses: azure/webapps-deploy@v2
           with:

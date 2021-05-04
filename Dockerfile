@@ -27,12 +27,11 @@ RUN apk add graphicsmagick ffmpeg ffmpeg-dev ghostscript
 
 # install node package
 
-COPY package*.json ./
-RUN npm install
+# COPY package*.json ./
+# RUN npm install
 COPY . .
 
 # start app
 
 EXPOSE 9666
 CMD ["node", "spacedeck.js"]
-

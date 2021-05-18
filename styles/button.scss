@@ -242,16 +242,16 @@
   
   &.btn-transparent {
     background-color: transparent;
-    color: $dark;
+    color: $primary-color;
     &.active {
         //color: $black !important;
-        color: $white;
-        background-color: $black;
+        color: $secondary-color;
+        // background-color: $black;
     }
     &.open {
         //color: $black !important;
-        color: $white;
-        background-color: $black;
+        color: $secondary-color;
+        // background-color: $black;
         border-radius: 0;
     }
   }

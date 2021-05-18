@@ -776,22 +776,25 @@ function setup_whiteboard_directives() {
 
       // send cursor
       if (dx>10 || dy>10 || dt>100) {
-        var name = "anonymous";
-        if ($scope.logged_in) {
-          name = $scope.user.nickname || $scope.user.email;
-        } else {
-          name = $scope.guest_nickname || "anonymous";
+        var name = get_query_param("name");
+        // if ($scope.logged_in) {
+        //   name = $scope.user.nickname || $scope.user.email;
+        // } else {
+        //   name = $scope.guest_nickname || "anonymous";
+        // }
+
+        if (name) {
+          var cursor_msg = {
+            action: "cursor",
+            x: cursor.x,
+            y: cursor.y,
+            name: name,
+            id: $scope.user._id||name
+          };
+  
+          $scope.websocket_send(cursor_msg);
         }
-
-        var cursor_msg = {
-          action: "cursor",
-          x: cursor.x,
-          y: cursor.y,
-          name: name,
-          id: $scope.user._id||name
-        };
-
-        $scope.websocket_send(cursor_msg);
+        
       }
       
       // side effects ftw!

@@ -24,7 +24,13 @@ router.get('/', function(req, res, next) {
   db.Membership
     .findAll({where: {
       space_id: req.space._id
-    }, include: ['user']})
+    }, include: [
+      {
+        model: db.User,
+        as: 'user',
+        attributes: ['_id', 'email', 'nickname', 'avatar_original_uri', 'avatar_thumb_uri', 'home_folder_id', 'prefs_language', 'prefs_email_notifications', 'prefs_email_digest', 'created_at', 'updated_at'],
+      }
+    ]})
     .then(memberships => {
       res.status(200).json(memberships);
     });

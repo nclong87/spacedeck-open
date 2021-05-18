@@ -219,3 +219,7 @@
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.15);
     border: 1px solid black;
 }
+
+.zoom-bar .icon-plus, .zoom-bar .icon-minus {
+  color: $primary-color;
+}

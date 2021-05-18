@@ -1,4 +1,4 @@
-FROM node:14-alpine3.11
+FROM node:10-alpine3.11
 
 WORKDIR /app
 
@@ -27,8 +27,8 @@ RUN apk add graphicsmagick ffmpeg ffmpeg-dev ghostscript
 
 # install node package
 
-# COPY package*.json ./
-# RUN npm install
+COPY package*.json ./
+RUN npm install
 COPY . .
 
 # start app

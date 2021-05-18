@@ -1,7 +1,7 @@
 on:
     push:
         branches:
-        - dev
+        - spce-dev
 name: Deploy spacedeck dev
 
 jobs:
@@ -11,12 +11,27 @@ jobs:
         # checkout the repo
         - name: 'Checkout GitHub Action'
           uses: actions/checkout@master
-          
+
         - name: 'Login via Azure CLI'
           uses: azure/login@v1
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
+
+        - name: Cache node modules
+          uses: actions/cache@v2
+          id: npm-cache
+          with:
+            path: node_modules
+            key: spacedeck-node_modules-${{ hashFiles('**/package-lock.json') }}
+
+        - name: Install Dependencies
+          if: steps.npm-cache.outputs.cache-hit != 'true'
+          run: |
+            npm install
+        - name: Build Style
+          run: |
+            gulp styles
+
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
@@ -24,11 +39,11 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.sha }}
-            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.sha }}
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.run_id }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.run_id }}
 
         - name: 'Deploy to Azure App Service'
           uses: 'azure/webapps-deploy@v2'
           with:
             app-name: 'meetingmaker-spacedeck-dev'
-            images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.sha }}
+            images: ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.run_id }}

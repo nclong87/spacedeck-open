@@ -30,12 +30,12 @@ jobs:
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
-            login-server: ${{ env.REGISTRY_LOGIN_SERVER }}
-            username: ${{ env.REGISTRY_USERNAME }}
-            password: ${{ env.REGISTRY_PASSWORD }}
+            login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             docker build . -t spacedeck-open:${{ github.run_id }}
-            docker tag spacedeck-open:${{ github.run_id }} ${{ env.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.run_id }}
-            docker tag spacedeck-open:${{ github.run_id }} ${{ env.REGISTRY_LOGIN_SERVER }}/spacedeck-open:latest
-            docker push ${{ env.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.run_id }}
-            docker push ${{ env.REGISTRY_LOGIN_SERVER }}/spacedeck-open:latest
+            docker tag spacedeck-open:${{ github.run_id }} ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.run_id }}
+            docker tag spacedeck-open:${{ github.run_id }} ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:latest
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:${{ github.run_id }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/spacedeck-open:latest
